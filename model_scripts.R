@@ -109,7 +109,7 @@ cal_serfling_regressiion = function(df,metric_name,upper_threshold = 0.95){
   equation = paste(metric_name,"~t + sin_2 + cos_2",sep = "")
   serfling_reg = lm(equation, data = new_df, na.action = na.exclude)
   pred_y = predict(serfling_reg,data=new_df)
-  output = pred_y>quantile(pred_y,upper_threshold=0.95)
+  output = pred_y>quantile(pred_y,upper_threshold)
   return(as.numeric(output))
 }
 
@@ -181,7 +181,7 @@ cal_adjusted_serfling_regressiion = function(df,metric_name,covarite_names,upper
                    paste(covarite_names,collapse = " + "),sep = "")
   serfling_reg = lm(equation, data = new_df, na.action = na.exclude)
   pred_y = predict(serfling_reg,data=new_df)
-  output = pred_y>quantile(pred_y,upper_threshold=0.95)
+  output = pred_y>quantile(pred_y,upper_threshold)
   return(as.numeric(output))
 }
 
